@@ -86,10 +86,10 @@ namespace Minisat {
     }
 
 
-    static void parse_DIMACS_foo(std::stringstream input_stream, Solver &S, bool strictp = false) {
-        parse_DIMACS_main(input_stream.rdbuf, S, strictp);
-
-    }
+//    static void parse_DIMACS_foo(std::stringstream input_stream, Solver &S, bool strictp = false) {
+//        parse_DIMACS_main(input_stream.rdbuf, S, strictp);
+//
+//    }
 
 //=================================================================================================
 }

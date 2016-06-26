@@ -62,10 +62,10 @@ static void SIGINT_exit(int) {
 int main(int argc, char **argv) {
 
     const char *graph = "/home/hejn/Uni/Semester/SS16/FL/SAT-solving/fooSAT/hc-4.col";
-
+    const char *cnf_path = "/home/hejn/Uni/Semester/SS16/FL/SAT-solving/fooSAT/cnf.cnf";
     vector<string> reverse_mapper;
-    stringstream input;
-    int foo = generateInput(graph, &input, &reverse_mapper);
+//    stringstream input;
+    int nVars = generateInput(graph, cnf_path, &reverse_mapper);
 
 
     try {
@@ -99,7 +99,7 @@ int main(int argc, char **argv) {
         if (cpu_lim != 0) limitTime((uint32_t) cpu_lim);
         if (mem_lim != 0) limitMemory((uint64_t) mem_lim);
 
-        //gzFile in = gzopen(input, "rb");
+        gzFile in = gzopen(cnf_path, "rb");
 
         if (S.verbosity > 0) {
             printf("============================[ Problem Statistics ]=============================\n");
@@ -109,8 +109,9 @@ int main(int argc, char **argv) {
         //if (in == NULL)
         //    printf("|  >> failed to load input file!                                              |\n");
 
-        parse_DIMACS_foo(input, S, (bool) strictp);
-        //gzclose(in);
+        parse_DIMACS(in, S, (bool) strictp);
+//        parse_DIMACS_foo(input, S, (bool) strictp);
+        gzclose(in);
 
         if (S.verbosity > 0) {
             printf("|  Number of variables:  %12d                                         |\n", S.nVars());
@@ -170,7 +171,7 @@ int main(int argc, char **argv) {
 //            if (S.model[i] != l_Undef)
 //                fprintf(res, "%s%s%d", (i == 0) ? "" : " ", (S.model[i] == l_True) ? "" : "-", i + 1);
 
-            interpretResult(&(S.model), foo, reverse_mapper);
+            interpretResult(&(S.model), nVars, reverse_mapper);
         }
 
 #ifdef NDEBUG

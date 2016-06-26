@@ -30,13 +30,13 @@ namespace fooSAT {
         }
     };
 
-    static void appendClaus(stringstream *cnf, vector<string> lits, map<string, int> *mapper);
+    static void appendClaus(ofstream *cnf, vector<string> lits, map<string, int> *mapper);
 
     static int getNumClaus(int num_vert);
 
     static int getNumVars(int num_vert);
 
-    static int generateInput(const char *path, stringstream *cnf, vector<string> *rev_mapper);
+    static int generateInput(const char *path, const char *cnf_path, vector<string> *rev_mapper);
 
     static int readGraphFile(const char *path, set<string> *edges);
 

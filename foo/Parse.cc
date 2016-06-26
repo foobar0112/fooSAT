@@ -9,12 +9,14 @@ using namespace Minisat;
 
 namespace fooSAT {
 
-    static int generateInput(const char *path, stringstream *cnf, vector<string> *rev_mapper) {
+    //static int generateInput(const char *path, stringstream *cnf, vector<string> *rev_mapper) {
+    static int generateInput(const char *path, const char *cnf_path, vector<string> *rev_mapper) {
 
         set<string> edges;
         int num_vert = readGraphFile(path, &edges);
 
-        //ofstream cnf(cnf_path, ofstream::out);
+        ofstream a(cnf_path);
+        ofstream *cnf = &a;
 
         *cnf << "p cnf " << getNumVars(num_vert) << " " << getNumClaus(num_vert) << endl;
 
@@ -51,7 +53,7 @@ namespace fooSAT {
                 for (int k = 0; k < num_vert; k++) {
                     if (k != j)
                         appendClaus(cnf, {"-p " + to_string(j) + " " + to_string(i),
-                                           "-p " + to_string(k) + " " + to_string(i)}, &mapper);
+                                          "-p " + to_string(k) + " " + to_string(i)}, &mapper);
                 }
             }
         }
@@ -61,8 +63,8 @@ namespace fooSAT {
                 for (int k = 0; k < num_vert; k++) {
                     if (j != i)
                         appendClaus(cnf, {"e " + to_string(i) + " " + to_string(j),
-                                           "-p " + to_string(k) + " " + to_string(i),
-                                           "-p " + to_string((k + 1) % num_vert) + " " + to_string(j)}, &mapper);
+                                          "-p " + to_string(k) + " " + to_string(i),
+                                          "-p " + to_string((k + 1) % num_vert) + " " + to_string(j)}, &mapper);
                 }
             }
         }
@@ -81,7 +83,7 @@ namespace fooSAT {
         return num_vert * num_vert;
     }
 
-    static void appendClaus(stringstream *cnf, vector<string> lits, map<string, int> *mapper) {
+    static void appendClaus(ofstream *cnf, vector<string> lits, map<string, int> *mapper) {
         for (string l :lits) {
             if (l[0] == '-') {
                 *cnf << "-" + to_string(mapper->find(l.erase(0, 1))->second) << " ";
@@ -122,7 +124,7 @@ namespace fooSAT {
             istringstream iss(line);
             if ((iss >> e >> i >> j)) {
                 if (e == 'e') {
-                    addEdge(edges, i-1, j-1);
+                    addEdge(edges, i - 1, j - 1);
                 }
             }
         }
