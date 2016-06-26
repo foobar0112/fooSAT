@@ -1,6 +1,6 @@
 ## fooSAT
 
-a student solution for SAT competition ( [link](https://ddll.inf.tu-dresden.de/web/Forschungslinie_(SS2016)) )
+student solution for a SAT competition ([link](https://ddll.inf.tu-dresden.de/web/Forschungslinie_(SS2016)))
 
 **group name:** foobar
 
