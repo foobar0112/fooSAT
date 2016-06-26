@@ -4,15 +4,12 @@ a student solution for SAT competition ( [link](https://ddll.inf.tu-dresden.de/w
 
 **group name:** foobar
 
-### Concept
+## Concept
 
 see concept for problem encoding [here](https://github.com/foobar0112/fooSAT/blob/master/concept/encoding.pdf)
 
-## build
+## build & run
 
-run `make`
+run `make` in project dir to build executeable
 
-## run
-
-run `./fooSAT <input file>`
-with path to the DIMACS graph file as `<input file>`
+run `./fooSAT <input file>` with path to the DIMACS graph file as `<input file>` to check if graph contains Hamiltonian cycle
