@@ -10,6 +10,6 @@ see concept for problem encoding [here](https://github.com/foobar0112/fooSAT/blo
 
 ## build & run
 
-run `make` in project dir to build executeable
+run `cmake` (and/ or `make`) in project dir to build executeable
 
 run `./fooSAT <input file>` with path to the DIMACS graph file as `<input file>` to check if graph contains Hamiltonian cycle
