@@ -1,8 +1,10 @@
 ## fooSAT
 
-student solution for a SAT competition ([link](https://ddll.inf.tu-dresden.de/web/Forschungslinie_(SS2016)))
+student solution for a SAT [competition](https://ddll.inf.tu-dresden.de/web/Forschungslinie_(SS2016)) that makes sense with the competition [environment](https://ddll.inf.tu-dresden.de/w/images/d/d2/HamiltonianCycleCompetition-Environment-SS2015.tar.gz)
 
 **group name:** foobar
+
+**sample graphs:** http://mat.gsia.cmu.edu/COLOR/instances.html
 
 ## Concept
 
