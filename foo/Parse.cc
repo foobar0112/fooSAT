@@ -152,10 +152,16 @@ namespace fooSAT {
                 s.insert(make_pair(j, k));
             }
         }
-        for (auto f : s) {
-            printf("%d ", f.second + 1);
-        }
 
+        printf("v");
+        for (auto f : s) {
+            printf(" %d", f.second + 1);
+        }
+    }
+
+    inline bool exists(const string &name) {
+        struct stat buffer;
+        return (stat(name.c_str(), &buffer) == 0);
     }
 
 }

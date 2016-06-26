@@ -14,6 +14,8 @@
 #include <sstream>
 #include <iterator>
 #include <iostream>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include "../minisat/utils/ParseUtils.h"
 #include "../minisat/mtl/Vec.h"
@@ -43,6 +45,8 @@ namespace fooSAT {
     static void addEdge(set<string> *edge, int i, int j);
 
     static void interpretResult(vec<lbool> *model, int numVars, vector<string> mapper);
+
+    inline bool exists(const string &name);
 }
 
 #endif //FOOSAT_PARSE_H
