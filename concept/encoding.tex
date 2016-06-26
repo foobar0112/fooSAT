@@ -1,0 +1,63 @@
+\documentclass[11pt,a4paper,onecolumn,oneside]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{amssymb}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\textbf{Definitionen} \\
+
+Sei $G(V,E)$ ein gerichteter Graph mit $|V| = m$ Knoten, bezeichnet mit den Zahlen $n \in \mathbb{N},~0 \leq n \leq m-1$. \\
+
+
+G hamilitonisch $\Leftrightarrow$ es ex. hamilitonische Kreis, d.h. ein geschlossener Pfad $\pi$ in $G$, der alle Knoten aus $V$ genau einmal enthält. \\
+
+$\mathcal{V} = \{p_{x,t}~|~0 \leq x \leq m-1,~0 \leq t \leq m-1\}~\cup~\{e_{x,y}~|~(x,y) \in \binom{a}{b}\}$ \\
+
+$I$ Interpretation:
+
+${p_{x,t}}^I = \top \Leftrightarrow$ Knoten $x$ ist in $\pi$ an Position $t$
+
+${e_{x,y}}^I = \top \Leftrightarrow$ in $G$ gibt es eine Kante von $x$ nach $y$ \\
+\\
+
+\textbf{Bedingungen} \\
+
+Seien $\mathcal{F}_i$ aussagenlogische Formeln über der Menge der Variablen $V$.\\
+
+$(i)$ an jeder Position in $\pi$ steht mindstens ein Knoten:
+
+$\displaystyle\mathcal{F}_1 = \bigwedge_{i=0}^{m-1} \bigvee_{j=0}^{m-1} p_{j,i}$\\
+
+$(ii)$ an jeder Position in $\pi$ steht höstens ein Knoten:
+
+$\displaystyle\mathcal{F}_2 = \bigwedge_{i=0}^{m-1} \bigwedge_{j=0}^{m-1} \bigg(p_{i,j}~\to~\neg\Big(\bigvee_{k=0, k \ne j}^{m-1} p_{i,k}\Big)\bigg)$
+
+$\displaystyle~~~~= \bigwedge_{i=0}^{m-1} \bigwedge_{j=0}^{m-1} \bigg(\neg p_{i,j}~\vee~\neg\Big(\bigvee_{k=0, k \ne j}^{m-1} p_{i,k}\Big)\bigg)$
+
+$\displaystyle~~~~= \bigwedge_{i=0}^{m-1} \bigwedge_{j=0}^{m-1} \bigg(\neg p_{i,j}~\vee~\bigwedge_{k=0, k \ne j}^{m-1} \neg p_{i,k}\bigg)$
+
+$\displaystyle~~~~= \bigwedge_{i=0}^{m-1} \bigwedge_{j=0}^{m-1} \bigwedge_{k=0, k \ne j}^{m-1} \Big(\neg p_{i,j}~\vee~\neg p_{i,k}\Big)$\\
+
+$(iii)$ wenn es keine gerichtete Kante $(x,y) \in E$ von Knoten $x \in V$ nach $y \in V$ gibt, dann kann $y$ nicht Nachfolger von $x$ in $\pi$ sein:
+
+$\displaystyle\mathcal{F}_3 = \bigwedge_{i=0}^{m-1} \bigwedge_{j=0, j \ne i}^{m-1} \bigg(\neg e_{i,j}~\to~\neg\Big(\bigvee_{k=0}^{m-1} (p_{i,k} \wedge p_{j,k+1~(mod~m)})\Big)\bigg)$
+
+$\displaystyle~~~~= \bigwedge_{i=0}^{m-1} \bigwedge_{j=0, j \ne i}^{m-1} \bigg( e_{i,j}~\vee~\neg\Big(\bigvee_{k=0}^{m-1} (p_{i,k} \wedge p_{j,k+1~(mod~m)})\Big)\bigg)$
+
+$\displaystyle~~~~= \bigwedge_{i=0}^{m-1} \bigwedge_{j=0, j \ne i}^{m-1} \bigg( e_{i,j}~\vee~\bigwedge_{k=0}^{m-1} \neg (p_{i,k} \wedge p_{j,k+1~(mod~m)})\bigg)$\\
+
+$\displaystyle~~~~= \bigwedge_{i=0}^{m-1} \bigwedge_{j=0, j \ne i}^{m-1} \Big( e_{i,j}~\vee~\bigwedge_{k=0}^{m-1} (\neg p_{i,k}~\vee~\neg p_{j,k+1~(mod~m)})\Big)$\\
+
+$\displaystyle~~~~= \bigwedge_{i=0}^{m-1} \bigwedge_{j=0, j \ne i}^{m-1} \bigwedge_{k=0}^{m-1} \Big( e_{i,j}~\vee~\neg p_{i,k}~\vee~\neg p_{j,k+1~(mod~m)}\Big)$\\
+
+
+
+$\displaystyle\mathcal{F} = \mathcal{F}_1 \wedge \mathcal{F}_2 \wedge \mathcal{F}_3 \wedge \bigwedge_{e \in E} e_{i,j}$ mit $e=(i,j), i \ne j$\\
+
+
+es gibt Interpretation $I$ mit $I\models\mathcal{F}$ $\Leftrightarrow$ $\mathcal{F}$ erfüllbar $\Leftrightarrow$ es gibt hamilitonischen Kreis in G $\Leftrightarrow$ G hamilitonisch.
+\end{document}
